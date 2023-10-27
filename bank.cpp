@@ -15,6 +15,7 @@
 // #define DEBUG_REG
 // #define DEBUG_LOG
 // #define DEBUG_OUT
+// #define DEBUG_EXEC
 using namespace std;
 
 uint64_t ts2u64(string str);
@@ -28,8 +29,35 @@ class ErrorType {
         : what(what) {}
 };
 class Trans;
-class User;
-class Bank;
+
+/*=============================== USER TYPE ===============================*/
+
+class User {
+   public:
+    // the followings should be set in the reg stage
+    uint64_t regTime;
+    string id;
+    uint32_t pin;
+    uint32_t balance;
+    // the followings should be set in the transaction stage
+    set<uint32_t> ip;
+    vector<Trans*> incomingTrans;
+    vector<Trans*> outgoingTrans;
+    User()
+        : regTime(0), id(""), pin(0), balance(0){};
+    User(uint64_t regTime, const string& id, uint32_t pin, uint32_t balance)
+        : regTime(regTime), id(id), pin(pin), balance(balance) {}
+    void print() const {
+        cout << "\tUser:\t" << id << "\t" << regTime << "\t" << pin << "\t" << balance << "\n";
+    }
+    void printIp() const {
+        cout << "\t" << id << "'s ip: ";
+        for (auto temp : ip)
+            cout << u322ip(temp)
+                 << " ";
+        cout << "\n";
+    }
+};
 
 /*=============================== TRANS TYPE ===============================*/
 
@@ -58,34 +86,8 @@ class Trans {
             return (a->execTs > b->execTs) || (a->execTs == b->execTs && a->id > b->id);
         }
     };
-};
-
-/*=============================== USER TYPE ===============================*/
-
-class User {
-   public:
-    // the followings should be set in the reg stage
-    uint64_t regTime;
-    string id;
-    uint32_t pin;
-    uint32_t balance;
-    // the followings should be set in the transaction stage
-    set<uint32_t> ip;
-    vector<Trans*> incomingTrans;
-    vector<Trans*> outgoingTrans;
-    User()
-        : regTime(0), id(""), pin(0), balance(0){};
-    User(uint64_t regTime, const string& id, uint32_t pin, uint32_t balance)
-        : regTime(regTime), id(id), pin(pin), balance(balance) {}
-    void print() const {
-        cout << "\tUser:\t" << id << "\t" << regTime << "\t" << pin << "\t" << balance << "\n";
-    }
-    void printIp() const {
-        cout << "\t" << id << "'s ip: ";
-        for (auto temp : ip)
-            cout << u322ip(temp)
-                 << " ";
-        cout << "\n";
+    void print() {
+        cout << id << ": " << sender->id << " sent " << amount << (amount == 1 ? " dollar to " : " dollars to ") << receiver->id << " at " << execTs << ".\n";
     }
 };
 
@@ -130,6 +132,8 @@ int main(int argc, char** argv) {
         unordered_map<string, User*> userid2user;
         priority_queue<Trans*, vector<Trans*>, Trans::LessExecTsFirst> pqExecTs;
         uint32_t transId = 0;
+
+        uint64_t prevSt = 0;
 
         { /*=============================== READ REG FILE ===============================*/
             string ts, id, pin, balance;
@@ -202,7 +206,13 @@ int main(int argc, char** argv) {
                         char transType;
                         cin >> ts >> ip >> sender >> receiver >> amount >> execTs >> transType;
                         uint64_t tsu64 = ts2u64(ts), execTsu64 = ts2u64(execTs);
-                        executeTransUpto(pqExecTs, executedTrans, tsu64);
+                        if (tsu64 < prevSt) {
+                            throw(ErrorType("Invalid decreasing timestamp in 'place' command."));
+                        }
+                        prevSt = tsu64;
+                        if (tsu64 > execTsu64) {
+                            throw(ErrorType("You cannot have an execution date before the current timestamp."));
+                        }
                         auto senderIt = userid2user.find(sender);
                         auto receiverIt = userid2user.find(receiver);
                         if (execTsu64 - tsu64 > 3000000ULL) {
@@ -222,6 +232,7 @@ int main(int argc, char** argv) {
                             } else if (senderPtr->ip.find(ip2u32(ip)) == senderPtr->ip.end()) {
                                 cout << "Fraudulent transaction detected, aborting request.\n";
                             } else {
+                                executeTransUpto(pqExecTs, executedTrans, tsu64);
                                 cout << "Transaction placed at " << tsu64 << ": $" << amount << " from " << sender << " to " << receiver << " at " << execTsu64 << ".\n";
                                 trans.push_back(Trans(senderPtr, receiverPtr, amount, execTsu64, transType, transId++));
                                 pqExecTs.push(&trans.back());
@@ -252,7 +263,7 @@ int main(int argc, char** argv) {
                         /*=============================== LIST TRANSACTIONS ===============================*/
                         uint32_t cnt = 0;
                         for (auto it = lower_bound(executedTrans.begin(), executedTrans.end(), startTime, Trans::OnlyLessExecTs()); it != itEnd; ++it, ++cnt) {
-                            cout << (*it)->id << ": " << (*it)->sender->id << " sent " << (*it)->amount << ((*it)->amount == 1 ? " dollar to " : " dollars to ") << (*it)->receiver->id << " at " << (*it)->execTs << ".\n";
+                            (*it)->print();
                         }
                         cout << "There were " << cnt << " transactions that were placed between time " << startTime << " to " << endTime << ".\n";
                     } else {
@@ -301,11 +312,11 @@ int main(int argc, char** argv) {
                                  << "Total # of transactions: " << userPtr->incomingTrans.size() + userPtr->outgoingTrans.size() << "\n"
                                  << "Incoming " << userPtr->incomingTrans.size() << ":\n";
                             for (auto trans : userPtr->incomingTrans) {
-                                cout << trans->id << ": " << trans->sender->id << " sent " << trans->amount << (trans->amount == 1 ? " dollar to " : " dollars to ") << trans->receiver->id << " at " << trans->execTs << ".\n";
+                                trans->print();
                             }
                             cout << "Outgoing " << userPtr->outgoingTrans.size() << ":\n";
                             for (auto trans : userPtr->outgoingTrans) {
-                                cout << trans->id << ": " << trans->sender->id << " sent " << trans->amount << (trans->amount == 1 ? " dollar to " : " dollars to ") << trans->receiver->id << " at " << trans->execTs << ".\n";
+                                trans->print();
                             }
                         }
                     } else {
@@ -315,7 +326,7 @@ int main(int argc, char** argv) {
                         cout << "Summary of [" << startTime << ", " << endTime << "):\n";
                         auto itEnd = upper_bound(executedTrans.begin(), executedTrans.end(), endTime, Trans::OnlyLessExecTs());
                         for (auto it = lower_bound(executedTrans.begin(), executedTrans.end(), startTime, Trans::OnlyLessExecTs()); it != itEnd; ++it, ++cnt) {
-                            cout << (*it)->id << ": " << (*it)->sender->id << " sent " << (*it)->amount << ((*it)->amount == 1 ? " dollar to " : " dollars to ") << (*it)->receiver->id << " at " << (*it)->execTs << ".\n";
+                            (*it)->print();
                             auto transBeingExecuted = (*it);
                             uint32_t totalTransFee = min(max(10, transBeingExecuted->amount / 100ULL), 450ULL);
                             if (transBeingExecuted->execTs - transBeingExecuted->sender->regTime > 50000000000ULL)
@@ -349,13 +360,23 @@ void executeTransUpto(priority_queue<Trans*, vector<Trans*>, Trans::LessExecTsFi
             totalTransFee = totalTransFee * 3 / 4;
         pqExecTs.pop();
         if (transBeingExecuted->type == 's') {
-            receiverFee += totalTransFee / 2;
+            receiverFee = totalTransFee / 2;
             senderFee += totalTransFee - receiverFee;
         } else {
             senderFee += totalTransFee;
         }
+#ifdef DEBUG_EXEC
+        cout << "processing trans:  ";
+        transBeingExecuted->print();
+        cout << "Sender: ";
+        sender->print();
+        cout << "Sender fee:" << senderFee << "\n";
+        cout << "Receiver: ";
+        receiver->print();
+        cout << "Receiver fee:" << receiverFee << "\n";
+#endif
         if (senderFee > sender->balance || receiverFee > receiver->balance) {
-            cout << "Insufficient funds to process transaction " << transBeingExecuted->id << ", discarding.\n";
+            cout << "Insufficient funds to process transaction " << transBeingExecuted->id << ".\n";  // << ", discarding.\n";
         } else {
             cout << "Transaction executed at " << transBeingExecuted->execTs << ": $" << transBeingExecuted->amount << " from " << sender->id << " to " << receiver->id << ".\n";
             sender->balance -= senderFee;
