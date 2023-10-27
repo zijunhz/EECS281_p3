@@ -3,6 +3,7 @@
 /my.out
 *.tar.gz
 *.yzj
+*.y
 /bank
 /bank.o
 /.VSCodeCounter
