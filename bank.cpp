@@ -91,7 +91,7 @@ class Trans {
     }
 };
 
-void executeTransUpto(priority_queue<Trans*, vector<Trans*>, Trans::LessExecTsFirst>& pqExecTs, vector<Trans*>& executedTrans, uint64_t upperBound);
+void executeTransUpto(priority_queue<Trans*, vector<Trans*>, Trans::LessExecTsFirst>& pqExecTs, vector<Trans*>& executedTrans, uint64_t upperBound, bool isVerbose);
 
 int main(int argc, char** argv) {
     try {
@@ -216,24 +216,31 @@ int main(int argc, char** argv) {
                         auto senderIt = userid2user.find(sender);
                         auto receiverIt = userid2user.find(receiver);
                         if (execTsu64 - tsu64 > 3000000ULL) {
-                            cout << "Select a time less than three days in the future.\n";
+                            if (isVerbose)
+                                cout << "Select a time less than three days in the future.\n";
                         } else if (senderIt == userid2user.end()) {
-                            cout << "Sender " << sender << " does not exist.\n";
+                            if (isVerbose)
+                                cout << "Sender " << sender << " does not exist.\n";
                         } else if (receiverIt == userid2user.end()) {
-                            cout << "Recipient " << receiver << " does not exist.\n";
+                            if (isVerbose)
+                                cout << "Recipient " << receiver << " does not exist.\n";
                         } else {
                             auto senderPtr = senderIt->second;
                             auto receiverPtr = receiverIt->second;
                             uint64_t execTsu64 = ts2u64(execTs);
                             if (execTsu64 < senderPtr->regTime || execTsu64 < receiverPtr->regTime) {
-                                cout << "At the time of execution, sender and/or recipient have not registered.\n";
+                                if (isVerbose)
+                                    cout << "At the time of execution, sender and/or recipient have not registered.\n";
                             } else if (senderPtr->ip.empty()) {
-                                cout << "Sender " << sender << " is not logged in.\n";
+                                if (isVerbose)
+                                    cout << "Sender " << sender << " is not logged in.\n";
                             } else if (senderPtr->ip.find(ip2u32(ip)) == senderPtr->ip.end()) {
-                                cout << "Fraudulent transaction detected, aborting request.\n";
+                                if (isVerbose)
+                                    cout << "Fraudulent transaction detected, aborting request.\n";
                             } else {
-                                executeTransUpto(pqExecTs, executedTrans, tsu64);
-                                cout << "Transaction placed at " << tsu64 << ": $" << amount << " from " << sender << " to " << receiver << " at " << execTsu64 << ".\n";
+                                executeTransUpto(pqExecTs, executedTrans, tsu64, isVerbose);
+                                if (isVerbose)
+                                    cout << "Transaction placed at " << tsu64 << ": $" << amount << " from " << sender << " to " << receiver << " at " << execTsu64 << ".\n";
                                 trans.push_back(Trans(senderPtr, receiverPtr, amount, execTsu64, transType, transId++));
                                 pqExecTs.push(&trans.back());
                             }
@@ -248,7 +255,7 @@ int main(int argc, char** argv) {
                     break;
                 }
             }
-            executeTransUpto(pqExecTs, executedTrans, UINT64_MAX);
+            executeTransUpto(pqExecTs, executedTrans, UINT64_MAX, isVerbose);
         }
         { /*=============================== READ QUERY LIST ===============================*/
             char qType;
@@ -349,7 +356,7 @@ int main(int argc, char** argv) {
     return 0;
 }
 
-void executeTransUpto(priority_queue<Trans*, vector<Trans*>, Trans::LessExecTsFirst>& pqExecTs, vector<Trans*>& executedTrans, uint64_t upperBound) {
+void executeTransUpto(priority_queue<Trans*, vector<Trans*>, Trans::LessExecTsFirst>& pqExecTs, vector<Trans*>& executedTrans, uint64_t upperBound, bool isVerbose) {
     while ((!pqExecTs.empty()) && (pqExecTs.top()->execTs < upperBound)) {
         auto transBeingExecuted = pqExecTs.top();
         auto sender = transBeingExecuted->sender;
@@ -376,9 +383,11 @@ void executeTransUpto(priority_queue<Trans*, vector<Trans*>, Trans::LessExecTsFi
         cout << "Receiver fee:" << receiverFee << "\n";
 #endif
         if (senderFee > sender->balance || receiverFee > receiver->balance) {
-            cout << "Insufficient funds to process transaction " << transBeingExecuted->id << ".\n";  // << ", discarding.\n";
+            if (isVerbose)
+                cout << "Insufficient funds to process transaction " << transBeingExecuted->id << ".\n";  // << ", discarding.\n";
         } else {
-            cout << "Transaction executed at " << transBeingExecuted->execTs << ": $" << transBeingExecuted->amount << " from " << sender->id << " to " << receiver->id << ".\n";
+            if (isVerbose)
+                cout << "Transaction executed at " << transBeingExecuted->execTs << ": $" << transBeingExecuted->amount << " from " << sender->id << " to " << receiver->id << ".\n";
             sender->balance -= senderFee;
             receiver->balance -= receiverFee;
             receiver->balance += transBeingExecuted->amount;
