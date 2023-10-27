@@ -10,8 +10,6 @@
 #include <sstream>
 #include <string>
 #include <vector>
-#define min(a, b) ((a) > (b) ? (b) : (a))
-#define max(a, b) ((a) < (b) ? (b) : (a))
 // #define DEBUG_REG
 // #define DEBUG_LOG
 // #define DEBUG_OUT
@@ -21,6 +19,14 @@ using namespace std;
 uint64_t ts2u64(string str);
 uint32_t ip2u32(const string& ip);
 string u322ip(uint32_t ip);
+
+uint32_t max(uint32_t a, uint32_t b) {
+    return ((a) < (b) ? (b) : (a));
+}
+
+uint32_t min(uint32_t a, uint32_t b) {
+    return ((a) > (b) ? (b) : (a));
+}
 
 class ErrorType {
    public:
@@ -78,7 +84,7 @@ class Trans {
             return a->execTs < val;
         }
         bool operator()(const uint64_t val, const Trans* a) const {
-            return a->execTs > val;
+            return val < a->execTs;
         }
     };
     struct LessExecTsFirst {
@@ -265,7 +271,7 @@ int main(int argc, char** argv) {
                     cin >> arg1 >> arg2;
                     uint64_t startTime = ts2u64(arg1), endTime = ts2u64(arg2);
                     // cout << qType << " " << arg1 << " " << arg2 << "\n";
-                    auto itEnd = upper_bound(executedTrans.begin(), executedTrans.end(), endTime, Trans::OnlyLessExecTs());
+                    auto itEnd = upper_bound(executedTrans.begin(), executedTrans.end(), endTime - 1, Trans::OnlyLessExecTs());
                     if (qType == 'l') {
                         /*=============================== LIST TRANSACTIONS ===============================*/
                         uint32_t cnt = 0;
@@ -331,7 +337,7 @@ int main(int argc, char** argv) {
                         uint64_t startTime = ts2u64(arg1) / 1000000ULL * 1000000ULL, endTime = startTime + 1000000ULL;
                         uint32_t cnt = 0, rev = 0;
                         cout << "Summary of [" << startTime << ", " << endTime << "):\n";
-                        auto itEnd = upper_bound(executedTrans.begin(), executedTrans.end(), endTime, Trans::OnlyLessExecTs());
+                        auto itEnd = upper_bound(executedTrans.begin(), executedTrans.end(), endTime - 1, Trans::OnlyLessExecTs());
                         for (auto it = lower_bound(executedTrans.begin(), executedTrans.end(), startTime, Trans::OnlyLessExecTs()); it != itEnd; ++it, ++cnt) {
                             (*it)->print();
                             auto transBeingExecuted = (*it);

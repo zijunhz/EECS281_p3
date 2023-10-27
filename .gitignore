@@ -2,3 +2,6 @@
 /.vscode
 /my.out
 *.tar.gz
+*.yzj
+/bank
+/bank.o
