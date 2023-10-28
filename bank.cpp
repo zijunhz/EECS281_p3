@@ -372,7 +372,7 @@ void executeTransUpto(priority_queue<Trans*, vector<Trans*>, Trans::LessExecTsFi
                       vector<Trans*>& executedTrans,
                       uint64_t upperBound,
                       bool isVerbose) {
-    while ((!pqExecTs.empty()) && (pqExecTs.top()->execTs < upperBound)) {
+    while ((!pqExecTs.empty()) && (pqExecTs.top()->execTs <= upperBound)) {
         auto transBeingExecuted = pqExecTs.top();
         auto sender = transBeingExecuted->sender;
         auto receiver = transBeingExecuted->receiver;
