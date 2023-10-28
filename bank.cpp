@@ -276,8 +276,9 @@ int main(int argc, char** argv) {
                              it != itEnd; ++it, ++cnt) {
                             (*it)->print();
                         }
-                        cout << "There were " << cnt << " transactions that were placed between time " << startTime
-                             << " to " << endTime << ".\n";
+                        cout << "There " << (cnt == 1 ? "was" : "were") << " " << cnt << " transaction"
+                             << (cnt == 1 ? "" : "s") << " that " << (cnt == 1 ? "was" : "were")
+                             << " placed between time " << startTime << " to " << endTime << ".\n";
                     } else {
                         /*======= CALC REVENUE =======*/
                         uint32_t rev = 0;
