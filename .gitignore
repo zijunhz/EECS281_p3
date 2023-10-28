@@ -7,3 +7,5 @@
 /bank
 /bank.o
 /.VSCodeCounter
+/tests
+/sync*
