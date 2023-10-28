@@ -326,12 +326,16 @@ int main(int argc, char** argv) {
                                  << "Total # of transactions: "
                                  << userPtr->incomingTrans.size() + userPtr->outgoingTrans.size() << "\n"
                                  << "Incoming " << userPtr->incomingTrans.size() << ":\n";
-                            for (auto trans : userPtr->incomingTrans) {
-                                trans->print();
+                            auto startIt = userPtr->incomingTrans.size() > 10 ? userPtr->incomingTrans.end() - 10
+                                                                              : userPtr->incomingTrans.begin();
+                            for (; startIt != userPtr->incomingTrans.end(); ++startIt) {
+                                (*startIt)->print();
                             }
                             cout << "Outgoing " << userPtr->outgoingTrans.size() << ":\n";
-                            for (auto trans : userPtr->outgoingTrans) {
-                                trans->print();
+                            startIt = userPtr->outgoingTrans.size() > 10 ? userPtr->outgoingTrans.end() - 10
+                                                                         : userPtr->outgoingTrans.begin();
+                            for (; startIt != userPtr->outgoingTrans.end(); ++startIt) {
+                                (*startIt)->print();
                             }
                         }
                     } else {
