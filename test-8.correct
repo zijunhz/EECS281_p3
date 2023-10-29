@@ -1,0 +1,283 @@
+User c logged in.
+Transaction placed at 30000000000: $1 from c to a at 30000000000.
+Transaction executed at 30000000000: $1 from c to a.
+Transaction placed at 30000010000: $1 from c to a at 30000030000.
+Transaction placed at 30000020000: $43563 from c to a at 30000030000.
+Transaction placed at 30000020000: $10 from c to a at 30000030000.
+Transaction executed at 30000030000: $1 from c to a.
+Insufficient funds to process transaction 2.
+Transaction executed at 30000030000: $10 from c to a.
+Transaction placed at 30000030000: $34553 from c to a at 30000030000.
+Insufficient funds to process transaction 4.
+Transaction placed at 30000030000: $2354 from c to a at 30000030000.
+Transaction executed at 30000030000: $2354 from c to a.
+Transaction placed at 90000000000: $1 from c to a at 90000000000.
+Transaction executed at 90000000000: $1 from c to a.
+Transaction placed at 90000000000: $534972 from c to a at 90000000000.
+Transaction executed at 90000000000: $534972 from c to a.
+Transaction placed at 90000000000: $1 from c to a at 90000000000.
+Transaction executed at 90000000000: $1 from c to a.
+Transaction placed at 90000000000: $1 from c to a at 90000000000.
+Transaction executed at 90000000000: $1 from c to a.
+Transaction placed at 90000000000: $1 from c to a at 90000000000.
+Transaction executed at 90000000000: $1 from c to a.
+Transaction placed at 90000000000: $1 from c to a at 90000000000.
+Transaction executed at 90000000000: $1 from c to a.
+Transaction placed at 90000000000: $1 from c to a at 90000000000.
+Transaction executed at 90000000000: $1 from c to a.
+Transaction placed at 90000000000: $1 from c to a at 90000000000.
+Transaction executed at 90000000000: $1 from c to a.
+Transaction placed at 90000000000: $1 from c to a at 90000000000.
+Transaction executed at 90000000000: $1 from c to a.
+Transaction placed at 90000000000: $1 from c to a at 90000000000.
+Transaction executed at 90000000000: $1 from c to a.
+Transaction placed at 90000000000: $1 from c to a at 90000000000.
+Transaction executed at 90000000000: $1 from c to a.
+Transaction placed at 90000000000: $1 from c to a at 90000000000.
+Transaction executed at 90000000000: $1 from c to a.
+Transaction placed at 90000000000: $1 from c to a at 90000000000.
+Transaction executed at 90000000000: $1 from c to a.
+Transaction placed at 90000000000: $1 from c to a at 90000000000.
+Transaction executed at 90000000000: $1 from c to a.
+Transaction placed at 90000000000: $1 from c to a at 90000000000.
+Transaction executed at 90000000000: $1 from c to a.
+Transaction placed at 90000000000: $1 from c to a at 90000000000.
+Transaction executed at 90000000000: $1 from c to a.
+Transaction placed at 90000000000: $1 from c to a at 90000000000.
+Transaction executed at 90000000000: $1 from c to a.
+Transaction placed at 90000000000: $1 from c to a at 90000000000.
+Transaction executed at 90000000000: $1 from c to a.
+Transaction placed at 90000000000: $1 from c to a at 90000000000.
+Transaction executed at 90000000000: $1 from c to a.
+Transaction placed at 90000000000: $1 from c to a at 90000000000.
+Transaction executed at 90000000000: $1 from c to a.
+Transaction placed at 90000000000: $1 from c to a at 90000000000.
+Transaction executed at 90000000000: $1 from c to a.
+Transaction placed at 90000000000: $1 from c to a at 90000000000.
+Transaction executed at 90000000000: $1 from c to a.
+Transaction placed at 90000000000: $1 from c to a at 90000000000.
+Transaction executed at 90000000000: $1 from c to a.
+Transaction placed at 90000000000: $1 from c to a at 90000000000.
+Transaction executed at 90000000000: $1 from c to a.
+Transaction placed at 90000000000: $1 from c to a at 90000000000.
+Transaction executed at 90000000000: $1 from c to a.
+Transaction placed at 90000000000: $1 from c to a at 90000000000.
+Transaction executed at 90000000000: $1 from c to a.
+Transaction placed at 90000000000: $1 from c to a at 90000000000.
+Transaction executed at 90000000000: $1 from c to a.
+Transaction placed at 90000000000: $1 from c to a at 90000000000.
+Transaction executed at 90000000000: $1 from c to a.
+Transaction placed at 90000000000: $1 from c to a at 90000000000.
+Transaction executed at 90000000000: $1 from c to a.
+Transaction placed at 90000000000: $1 from c to a at 90000000000.
+Transaction executed at 90000000000: $1 from c to a.
+Transaction placed at 90000000000: $1 from c to a at 90000000000.
+Transaction executed at 90000000000: $1 from c to a.
+Transaction placed at 90000000000: $1 from c to a at 90000000000.
+User a logged in.
+User a logged out.
+Sender a is not logged in.
+User a logged in.
+Transaction executed at 90000000000: $1 from c to a.
+Transaction placed at 90000000000: $83472 from a to c at 90000000000.
+Transaction executed at 90000000000: $83472 from a to c.
+Transaction placed at 90000000000: $355 from a to c at 90000009900.
+Transaction placed at 90000000000: $675 from a to c at 90000009900.
+Transaction placed at 90000000000: $234 from a to c at 90000009800.
+Transaction placed at 90000000000: $756 from a to c at 90000009800.
+Transaction placed at 90000000000: $546 from a to c at 90000009700.
+Transaction placed at 90000000000: $567 from a to c at 90000009700.
+Transaction placed at 90000000000: $863 from a to c at 90000009600.
+Transaction placed at 90000000000: $756 from a to c at 90000009600.
+Transaction executed at 90000009600: $863 from a to c.
+Transaction executed at 90000009600: $756 from a to c.
+Transaction executed at 90000009700: $546 from a to c.
+Transaction executed at 90000009700: $567 from a to c.
+Transaction executed at 90000009800: $234 from a to c.
+Transaction executed at 90000009800: $756 from a to c.
+Transaction executed at 90000009900: $355 from a to c.
+Transaction executed at 90000009900: $675 from a to c.
+Customer a account summary:
+Balance: $448673
+Total # of transactions: 45
+Incoming 36:
+28: c sent 1 dollar to a at 90000000000.
+29: c sent 1 dollar to a at 90000000000.
+30: c sent 1 dollar to a at 90000000000.
+31: c sent 1 dollar to a at 90000000000.
+32: c sent 1 dollar to a at 90000000000.
+33: c sent 1 dollar to a at 90000000000.
+34: c sent 1 dollar to a at 90000000000.
+35: c sent 1 dollar to a at 90000000000.
+36: c sent 1 dollar to a at 90000000000.
+37: c sent 1 dollar to a at 90000000000.
+Outgoing 9:
+38: a sent 83472 dollars to c at 90000000000.
+45: a sent 863 dollars to c at 90000009600.
+46: a sent 756 dollars to c at 90000009600.
+43: a sent 546 dollars to c at 90000009700.
+44: a sent 567 dollars to c at 90000009700.
+41: a sent 234 dollars to c at 90000009800.
+42: a sent 756 dollars to c at 90000009800.
+39: a sent 355 dollars to c at 90000009900.
+40: a sent 675 dollars to c at 90000009900.
+Customer c account summary:
+Balance: $999550328
+Total # of transactions: 45
+Incoming 9:
+38: a sent 83472 dollars to c at 90000000000.
+45: a sent 863 dollars to c at 90000009600.
+46: a sent 756 dollars to c at 90000009600.
+43: a sent 546 dollars to c at 90000009700.
+44: a sent 567 dollars to c at 90000009700.
+41: a sent 234 dollars to c at 90000009800.
+42: a sent 756 dollars to c at 90000009800.
+39: a sent 355 dollars to c at 90000009900.
+40: a sent 675 dollars to c at 90000009900.
+Outgoing 36:
+28: c sent 1 dollar to a at 90000000000.
+29: c sent 1 dollar to a at 90000000000.
+30: c sent 1 dollar to a at 90000000000.
+31: c sent 1 dollar to a at 90000000000.
+32: c sent 1 dollar to a at 90000000000.
+33: c sent 1 dollar to a at 90000000000.
+34: c sent 1 dollar to a at 90000000000.
+35: c sent 1 dollar to a at 90000000000.
+36: c sent 1 dollar to a at 90000000000.
+37: c sent 1 dollar to a at 90000000000.
+0: c sent 1 dollar to a at 30000000000.
+1: c sent 1 dollar to a at 30000030000.
+3: c sent 10 dollars to a at 30000030000.
+5: c sent 2354 dollars to a at 30000030000.
+6: c sent 1 dollar to a at 90000000000.
+7: c sent 534972 dollars to a at 90000000000.
+8: c sent 1 dollar to a at 90000000000.
+9: c sent 1 dollar to a at 90000000000.
+10: c sent 1 dollar to a at 90000000000.
+11: c sent 1 dollar to a at 90000000000.
+12: c sent 1 dollar to a at 90000000000.
+13: c sent 1 dollar to a at 90000000000.
+14: c sent 1 dollar to a at 90000000000.
+15: c sent 1 dollar to a at 90000000000.
+16: c sent 1 dollar to a at 90000000000.
+17: c sent 1 dollar to a at 90000000000.
+18: c sent 1 dollar to a at 90000000000.
+19: c sent 1 dollar to a at 90000000000.
+20: c sent 1 dollar to a at 90000000000.
+21: c sent 1 dollar to a at 90000000000.
+22: c sent 1 dollar to a at 90000000000.
+23: c sent 1 dollar to a at 90000000000.
+24: c sent 1 dollar to a at 90000000000.
+25: c sent 1 dollar to a at 90000000000.
+26: c sent 1 dollar to a at 90000000000.
+27: c sent 1 dollar to a at 90000000000.
+28: c sent 1 dollar to a at 90000000000.
+29: c sent 1 dollar to a at 90000000000.
+30: c sent 1 dollar to a at 90000000000.
+31: c sent 1 dollar to a at 90000000000.
+32: c sent 1 dollar to a at 90000000000.
+33: c sent 1 dollar to a at 90000000000.
+34: c sent 1 dollar to a at 90000000000.
+35: c sent 1 dollar to a at 90000000000.
+36: c sent 1 dollar to a at 90000000000.
+37: c sent 1 dollar to a at 90000000000.
+38: a sent 83472 dollars to c at 90000000000.
+45: a sent 863 dollars to c at 90000009600.
+46: a sent 756 dollars to c at 90000009600.
+43: a sent 546 dollars to c at 90000009700.
+44: a sent 567 dollars to c at 90000009700.
+41: a sent 234 dollars to c at 90000009800.
+42: a sent 756 dollars to c at 90000009800.
+39: a sent 355 dollars to c at 90000009900.
+40: a sent 675 dollars to c at 90000009900.
+There were 45 transactions that were placed between time 0 to 999999999999.
+1: c sent 1 dollar to a at 30000030000.
+3: c sent 10 dollars to a at 30000030000.
+5: c sent 2354 dollars to a at 30000030000.
+6: c sent 1 dollar to a at 90000000000.
+7: c sent 534972 dollars to a at 90000000000.
+8: c sent 1 dollar to a at 90000000000.
+9: c sent 1 dollar to a at 90000000000.
+10: c sent 1 dollar to a at 90000000000.
+11: c sent 1 dollar to a at 90000000000.
+12: c sent 1 dollar to a at 90000000000.
+13: c sent 1 dollar to a at 90000000000.
+14: c sent 1 dollar to a at 90000000000.
+15: c sent 1 dollar to a at 90000000000.
+16: c sent 1 dollar to a at 90000000000.
+17: c sent 1 dollar to a at 90000000000.
+18: c sent 1 dollar to a at 90000000000.
+19: c sent 1 dollar to a at 90000000000.
+20: c sent 1 dollar to a at 90000000000.
+21: c sent 1 dollar to a at 90000000000.
+22: c sent 1 dollar to a at 90000000000.
+23: c sent 1 dollar to a at 90000000000.
+24: c sent 1 dollar to a at 90000000000.
+25: c sent 1 dollar to a at 90000000000.
+26: c sent 1 dollar to a at 90000000000.
+27: c sent 1 dollar to a at 90000000000.
+28: c sent 1 dollar to a at 90000000000.
+29: c sent 1 dollar to a at 90000000000.
+30: c sent 1 dollar to a at 90000000000.
+31: c sent 1 dollar to a at 90000000000.
+32: c sent 1 dollar to a at 90000000000.
+33: c sent 1 dollar to a at 90000000000.
+34: c sent 1 dollar to a at 90000000000.
+35: c sent 1 dollar to a at 90000000000.
+36: c sent 1 dollar to a at 90000000000.
+37: c sent 1 dollar to a at 90000000000.
+38: a sent 83472 dollars to c at 90000000000.
+45: a sent 863 dollars to c at 90000009600.
+46: a sent 756 dollars to c at 90000009600.
+There were 38 transactions that were placed between time 30000030000 to 90000009700.
+281Bank has collected 42 dollars in fees over 3 minutes.
+281Bank has collected 919 dollars in fees over 5 years 99 months 99 days 97 hours 97 minutes 99 seconds.
+Summary of [90000000000, 90001000000):
+6: c sent 1 dollar to a at 90000000000.
+7: c sent 534972 dollars to a at 90000000000.
+8: c sent 1 dollar to a at 90000000000.
+9: c sent 1 dollar to a at 90000000000.
+10: c sent 1 dollar to a at 90000000000.
+11: c sent 1 dollar to a at 90000000000.
+12: c sent 1 dollar to a at 90000000000.
+13: c sent 1 dollar to a at 90000000000.
+14: c sent 1 dollar to a at 90000000000.
+15: c sent 1 dollar to a at 90000000000.
+16: c sent 1 dollar to a at 90000000000.
+17: c sent 1 dollar to a at 90000000000.
+18: c sent 1 dollar to a at 90000000000.
+19: c sent 1 dollar to a at 90000000000.
+20: c sent 1 dollar to a at 90000000000.
+21: c sent 1 dollar to a at 90000000000.
+22: c sent 1 dollar to a at 90000000000.
+23: c sent 1 dollar to a at 90000000000.
+24: c sent 1 dollar to a at 90000000000.
+25: c sent 1 dollar to a at 90000000000.
+26: c sent 1 dollar to a at 90000000000.
+27: c sent 1 dollar to a at 90000000000.
+28: c sent 1 dollar to a at 90000000000.
+29: c sent 1 dollar to a at 90000000000.
+30: c sent 1 dollar to a at 90000000000.
+31: c sent 1 dollar to a at 90000000000.
+32: c sent 1 dollar to a at 90000000000.
+33: c sent 1 dollar to a at 90000000000.
+34: c sent 1 dollar to a at 90000000000.
+35: c sent 1 dollar to a at 90000000000.
+36: c sent 1 dollar to a at 90000000000.
+37: c sent 1 dollar to a at 90000000000.
+38: a sent 83472 dollars to c at 90000000000.
+45: a sent 863 dollars to c at 90000009600.
+46: a sent 756 dollars to c at 90000009600.
+43: a sent 546 dollars to c at 90000009700.
+44: a sent 567 dollars to c at 90000009700.
+41: a sent 234 dollars to c at 90000009800.
+42: a sent 756 dollars to c at 90000009800.
+39: a sent 355 dollars to c at 90000009900.
+40: a sent 675 dollars to c at 90000009900.
+There were a total of 41 transactions, 281Bank has collected 947 dollars in fees.
+Summary of [30000000000, 30001000000):
+0: c sent 1 dollar to a at 30000000000.
+1: c sent 1 dollar to a at 30000030000.
+3: c sent 10 dollars to a at 30000030000.
+5: c sent 2354 dollars to a at 30000030000.
+There were a total of 4 transactions, 281Bank has collected 53 dollars in fees.
