@@ -44,15 +44,13 @@ class User {
     string id;
     uint32_t pin;
     uint32_t balance;
-    uint32_t inCnt;
-    uint32_t outCnt;
     // the followings should be set in the transaction stage
     set<uint32_t> ip;
-    deque<Trans*> incomingTrans;
-    deque<Trans*> outgoingTrans;
-    User() : regTime(0), id(""), pin(0), balance(0), inCnt(0), outCnt(0){};
+    vector<Trans*> incomingTrans;
+    vector<Trans*> outgoingTrans;
+    User() : regTime(0), id(""), pin(0), balance(0){};
     User(uint64_t regTime, const string& id, uint32_t pin, uint32_t balance)
-        : regTime(regTime), id(id), pin(pin), balance(balance), inCnt(0), outCnt(0) {}
+        : regTime(regTime), id(id), pin(pin), balance(balance) {}
     void print() const { cout << "\tUser:\t" << id << "\t" << regTime << "\t" << pin << "\t" << balance << "\n"; }
     void printIp() const {
         cout << "\t" << id << "'s ip: ";
@@ -326,14 +324,19 @@ int main(int argc, char** argv) {
                             auto userPtr = user->second;
                             cout << "Customer " << arg1 << " account summary:\n"
                                  << "Balance: $" << userPtr->balance << "\n"
-                                 << "Total # of transactions: " << userPtr->inCnt + userPtr->outCnt << "\n"
-                                 << "Incoming " << userPtr->inCnt << ":\n";
-                            for (auto itm : userPtr->incomingTrans) {
-                                itm->print();
+                                 << "Total # of transactions: "
+                                 << userPtr->incomingTrans.size() + userPtr->outgoingTrans.size() << "\n"
+                                 << "Incoming " << userPtr->incomingTrans.size() << ":\n";
+                            auto startIt = userPtr->incomingTrans.size() > 10 ? userPtr->incomingTrans.end() - 10
+                                                                              : userPtr->incomingTrans.begin();
+                            for (; startIt != userPtr->incomingTrans.end(); ++startIt) {
+                                (*startIt)->print();
                             }
-                            cout << "Outgoing " << userPtr->outCnt << ":\n";
-                            for (auto itm : userPtr->outgoingTrans) {
-                                itm->print();
+                            cout << "Outgoing " << userPtr->outgoingTrans.size() << ":\n";
+                            startIt = userPtr->outgoingTrans.size() > 10 ? userPtr->outgoingTrans.end() - 10
+                                                                         : userPtr->outgoingTrans.begin();
+                            for (; startIt != userPtr->outgoingTrans.end(); ++startIt) {
+                                (*startIt)->print();
                             }
                         }
                     } else {
@@ -412,11 +415,7 @@ void executeTransUpto(priority_queue<Trans*, vector<Trans*>, Trans::LessExecTsFi
             receiver->balance += transBeingExecuted->amount;
             executedTrans.push_back(transBeingExecuted);
             sender->outgoingTrans.push_back(transBeingExecuted);
-            if (++sender->outCnt > 10)
-                sender->outgoingTrans.pop_front();
             receiver->incomingTrans.push_back(transBeingExecuted);
-            if (++receiver->inCnt > 10)
-                receiver->incomingTrans.pop_front();
         }
     }
 }
