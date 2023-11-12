@@ -271,26 +271,28 @@ int main(int argc, char** argv) {
                     if (qType == 'l') {
                         /*======= LIST TRANSACTIONS =======*/
                         uint32_t cnt = 0;
-                        for (auto it = lower_bound(executedTrans.begin(), executedTrans.end(), startTime,
-                                                   Trans::OnlyLessExecTs());
-                             it != itEnd; ++it, ++cnt) {
-                            (*it)->print();
-                        }
+                        if (startTime < endTime)
+                            for (auto it = lower_bound(executedTrans.begin(), executedTrans.end(), startTime,
+                                                       Trans::OnlyLessExecTs());
+                                 it != itEnd; ++it, ++cnt) {
+                                (*it)->print();
+                            }
                         cout << "There " << (cnt == 1 ? "was" : "were") << " " << cnt << " transaction"
                              << (cnt == 1 ? "" : "s") << " that " << (cnt == 1 ? "was" : "were")
                              << " placed between time " << startTime << " to " << endTime << ".\n";
                     } else {
                         /*======= CALC REVENUE =======*/
                         uint32_t rev = 0;
-                        for (auto it = lower_bound(executedTrans.begin(), executedTrans.end(), startTime,
-                                                   Trans::OnlyLessExecTs());
-                             it != itEnd; ++it) {
-                            auto transBeingExecuted = (*it);
-                            uint32_t totalTransFee = min(max(10, transBeingExecuted->amount / 100ULL), 450ULL);
-                            if (transBeingExecuted->execTs - transBeingExecuted->sender->regTime > 50000000000ULL)
-                                totalTransFee = totalTransFee * 3 / 4;
-                            rev += totalTransFee;
-                        }
+                        if (startTime < endTime)
+                            for (auto it = lower_bound(executedTrans.begin(), executedTrans.end(), startTime,
+                                                       Trans::OnlyLessExecTs());
+                                 it != itEnd; ++it) {
+                                auto transBeingExecuted = (*it);
+                                uint32_t totalTransFee = min(max(10, transBeingExecuted->amount / 100ULL), 450ULL);
+                                if (transBeingExecuted->execTs - transBeingExecuted->sender->regTime > 50000000000ULL)
+                                    totalTransFee = totalTransFee * 3 / 4;
+                                rev += totalTransFee;
+                            }
                         uint64_t totalInterval = endTime - startTime;
                         uint64_t year = totalInterval / 10000000000ULL;
                         uint64_t month = (totalInterval % 10000000000ULL) / 100000000ULL;
